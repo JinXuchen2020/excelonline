@@ -15,10 +15,10 @@ COPY ["ExcelOnline.Data/ExcelOnline.Data.csproj", "ExcelOnline.Data/"]
 RUN dotnet restore "ExcelOnline.Api/ExcelOnline.Api.csproj"
 COPY . .
 WORKDIR "/src/ExcelOnline.Api"
-RUN dotnet build "ExcelOnline.Api.csproj" -c Release -o /app/build
+RUN dotnet build "/ExcelOnline.Api/ExcelOnline.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "ExcelOnline.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "/ExcelOnline.Api/ExcelOnline.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
