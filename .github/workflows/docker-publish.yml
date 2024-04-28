@@ -97,4 +97,4 @@ jobs:
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
       - name: Run the docker image
-        run: docker run ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.tags[0] }}
+        run: docker run ${{ steps.meta.outputs.tags }}
