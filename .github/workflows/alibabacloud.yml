@@ -67,14 +67,10 @@ jobs:
         repository: "${{ env.NAMESPACE }}/${{ env.IMAGE }}"
         tag: "${{ env.TAG }}"
 
-    - name: Install kubectl
-      uses: steebchen/kubectl@v1
+    - uses: actions-hub/kubectl@master
+      env:
+        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
       with:
-        version: latest
-    - name: Configure kubectl
-      run: |
-        echo $KUBE_CONFIG_DATA > KUBE_CONFIG
-        mkdir -p $HOME/.kube
-        mv KUBE_CONFIG $HOME/.kube/config
+        args: get pods
     - name: Deploy to Kubernetes
       run: kubectl apply -f your-kubernetes-yaml.yaml   
