@@ -66,11 +66,11 @@ jobs:
         access-key-secret: "${{ secrets.ACCESS_KEY_SECRET }}"
         repository: "${{ env.NAMESPACE }}/${{ env.IMAGE }}"
         tag: "${{ env.TAG }}"
-
-    - uses: actions-hub/kubectl@master
-      env:
-        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
-      with:
-        args: get pods
+    - name: Setting context for Kubernetes cluster of Alibaba Cloud Kubernetes Service (ACK)
+      uses: aliyun/ack-set-context@v1
+      with:       
+        access-key-id: "${{ secrets.ACCESS_KEY_ID }}"
+        access-key-secret: "${{ secrets.ACCESS_KEY_SECRET }}"
+        cluster-id: "c87dbd87610ea42caa6622680a6612ade" 
     - name: Deploy to Kubernetes
       run: kubectl apply -f your-kubernetes-yaml.yaml   
