@@ -27,8 +27,8 @@ on:
 env:
   REGION_ID: cn-hangzhou
   REGISTRY: registry.cn-hangzhou.aliyuncs.com
-  NAMESPACE: namespace
-  IMAGE: repo
+  NAMESPACE: excelonline
+  IMAGE: api
   TAG: ${{ github.sha }}
   ACK_CLUSTER_ID: c87dbd87610ea42caa6622680a6612ade
   ACK_DEPLOYMENT_NAME: nginx-deployment
