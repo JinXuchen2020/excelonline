@@ -21,7 +21,7 @@ name: Build and Deploy to ACK
 
 on:
   push:
-    branches: [ "master" ]
+    branches-ignore: [ "master" ]
 
 # Environment variables available to all jobs and steps in this workflow.
 env:
@@ -41,7 +41,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4    
 
     # 1.1 Login to ACR
     - name: Login to ACR with the AccessKey pair
@@ -72,5 +72,5 @@ jobs:
         access-key-id: "${{ secrets.ACCESS_KEY_ID }}"
         access-key-secret: "${{ secrets.ACCESS_KEY_SECRET }}"
         cluster-id: "c87dbd87610ea42caa6622680a6612ade" 
-    - name: Deploy to Kubernetes
-      run: kubectl apply -f your-kubernetes-yaml.yaml   
+    #- name: Deploy to Kubernetes
+    #  run: kubectl apply -f excelonlineapi.yml --validate=false  
