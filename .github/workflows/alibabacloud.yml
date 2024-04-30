@@ -42,6 +42,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        sparse-checkout: |
+          excelonlineapi.yaml
+        sparse-checkout-cone-mode: false
 
     # 1.1 Login to ACR
     - name: Login to ACR with the AccessKey pair
